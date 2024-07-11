@@ -1,0 +1,96 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    max-width: 100vw;
+    min-height: 100vh;
+    position: relative;
+}
+
+header {
+    max-width: 100vw;
+    height: 20vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+}
+
+header h1 {
+    text-align: center;
+    width: 100%;
+    background-color: #ddd;
+    padding: 1em 0;
+}
+
+header form {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    margin-top: 1em;
+}
+
+form input {
+    flex: 3;
+    padding: 0.75em;
+}
+
+form button {
+    flex: 1;
+    padding: 0.75em;
+    cursor: pointer;
+}
+
+main {
+    margin: 0 auto;
+    max-width: 900px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2em;
+}
+
+main table,
+tr,
+th,
+td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+table {
+    width: 100%;
+}
+th,td{
+    width: 50%;
+}
+
+th {
+    height: 2.75em;
+    background-color: #ddd;
+    text-transform: uppercase;
+}
+
+td {
+    height: 2.5em;
+    text-align: center;
+}
+
+footer {
+    width: 100%;
+    height: 7.5vh;
+    background-color: #ddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    font-size: x-large;
+    bottom: 0;
+    color: #fff;
+}
