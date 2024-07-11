@@ -37,14 +37,27 @@ header form {
 }
 
 form input {
-    flex: 3;
+    flex: 6;
     padding: 0.75em;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+form input:focus{
+    outline: none;
 }
 
 form button {
     flex: 1;
     padding: 0.75em;
     cursor: pointer;
+    background: green;
+    border: none;
+    color: white;
+    border-radius: 0.5em;
+}
+
+form button i{
+    font-size: 1.5em;
 }
 
 main {
@@ -93,4 +106,25 @@ footer {
     font-size: x-large;
     bottom: 0;
     color: #fff;
+}
+
+.form-group{
+    display: flex;
+    justify-content: space-around;
+}
+.form-group form button{
+    padding: 0.75em;
+    cursor: pointer;
+    border: none;
+    border-radius: 0.5em;
+    background: transparent;
+}
+.form-group form button i{
+    font-size: 1.5em;
+}
+.form-group form .complete{
+    color: blue;
+}
+.form-group form .delete{
+    color: red;
 }
