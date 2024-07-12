@@ -1,49 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
-        <%= title%>
-    </title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="/css/style.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title%></title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
     <header>
-        <h1>Track your daily activities</h1>
-        <form action="/task" method="post">
-            <input type="text" name="name">
-            <button type="submit"><i class="fa-solid fa-plus"></i></button>
-        </form>
+      <h1>Track your daily activities</h1>
+      <form action="/task" method="post">
+        <input type="text" name="name" />
+        <button type="submit"><i class="fa-solid fa-plus"></i></button>
+      </form>
     </header>
     <main>
-        <table>
-            <tr>
-                <th>task</th>
-                <th>actions</th>
-            </tr>
-           <% tasks.forEach(doc=>{%>
-            <tr>
-                <td><%= doc.name%></td>
-                <td><div class="form-group">
-                    <form action="/task/<%= doc._id%>?_method=PUT" method="post">
-                        <input type="hidden" name="isCompleted" value="true">
-                    <button class="complete"><i class="fa-solid fa-check"></i></button>
+      <table>
+        <tr>
+          <th>task</th>
+          <th>actions</th>
+        </tr>
+       <%if(tasks.length<=0){%>
+       <tr>
+        <td colspan="2"> <h2 class="no-tasks">There are no tasks to display</h2></td>
+        <!-- <td></td> -->
+       </tr>
+       <%}else{%>
+        <% tasks.forEach(doc=>{%>
+          <tr>
+            <td>
+              <%if(doc.isCompleted){%>
+                <span class="strike"><%= doc.name%></span>
+              <%}else{%>
+                <span><%= doc.name%></span>
+                <%}%>
+            </td>
+            <td>
+              <div class="form-group">
+                <form action="/task/<%= doc._id%>?_method=PUT" method="post">
+  
+                  <input type="hidden" name="isCompleted" value="true" />
+  
+                  <button class="complete">
+                    <i class="fa-solid fa-check"></i>
+                  </button>
+                  
                 </form>
-
-                     <form action="/task/<%= doc._id%>?_method=DELETE" method="post">
-                        <button class="delete"><i class="fa-solid fa-trash"></i></button>
-                     </form>
-                    </div>
-                </td>
-            </tr>
-           <%})%>
-        </table>
+  
+                <form action="/task/<%= doc._id%>?_method=DELETE" method="post">
+                  <button class="delete">
+                    <i class="fa-solid fa-trash"></i>
+                  </button>
+                </form>
+              </div>
+            </td>
+          </tr>
+          <%})%>
+        <%}%>
+      </table>
     </main>
     <footer>
-        <span>Umashankar &copy; 2024 All rights reserved</span>
+      <span>Umashankar &copy; 2024 All rights reserved</span>
     </footer>
-</body>
-
+  </body>
 </html>

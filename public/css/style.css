@@ -80,6 +80,9 @@ td {
 table {
     width: 100%;
 }
+table h1{
+    text-align: center;
+}
 th,td{
     width: 50%;
 }
@@ -93,6 +96,9 @@ th {
 td {
     height: 2.5em;
     text-align: center;
+}
+td span.strike{
+    text-decoration:line-through;
 }
 
 footer {
