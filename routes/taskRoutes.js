@@ -3,10 +3,10 @@ import { deleteTask, getTask, getTasks, postTask, updatedTask } from '../control
 
 let taskRouter = express.Router()
 
-//POST http://localhost:5000/task
+
 taskRouter.post("/", postTask)
 
-//GET http://localhost:5000/task
+
 taskRouter.get("/", getTasks)
 
 
