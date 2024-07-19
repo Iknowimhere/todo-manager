@@ -1,21 +1,22 @@
 import express from 'express'
 import { deleteTask, getTask, getTasks, postTask, updatedTask } from '../controllers/taskControllers.js'
+import { auth } from '../middlewares/auth.js'
 
 let taskRouter = express.Router()
 
 
-taskRouter.post("/", postTask)
+taskRouter.post("/", auth,postTask)
 
 
-taskRouter.get("/", getTasks)
+taskRouter.get("/", auth,getTasks)
 
 
-taskRouter.get("/:id", getTask)
+taskRouter.get("/:id", auth,getTask)
 
 
-taskRouter.put("/:id", updatedTask)
+taskRouter.put("/:id", auth,updatedTask)
 
 
-taskRouter.delete("/:id", deleteTask)
+taskRouter.delete("/:id", auth,deleteTask)
 
 export default taskRouter;
