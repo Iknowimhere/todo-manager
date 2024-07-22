@@ -71,3 +71,8 @@ export const login=async (req,res,next)=>{
         res.status(400).json(error.message) 
     }
 }
+
+export const logout=(req,res,next)=>{
+    res.clearCookie("token")
+    res.redirect("/users/login")
+}

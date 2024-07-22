@@ -1,5 +1,6 @@
 import { Router } from "express";
-import { getLoginPage, getSignupPage, login, signup } from "../controllers/userControllers.js";
+import { getLoginPage, getSignupPage, login, logout, signup } from "../controllers/userControllers.js";
+import { auth } from "../middlewares/auth.js";
 
 
 
@@ -12,6 +13,7 @@ userRouter.post("/signup",signup)
 
 userRouter.get("/login",getLoginPage)
 userRouter.post("/login",login)
+userRouter.get("/logout",auth,logout)
 
 // userRouter.get("/home",auth,(req,res,next)=>{
 // res.send(`Welcome to home page ${req.user.name}!`)
