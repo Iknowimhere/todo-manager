@@ -1,4 +1,3 @@
-import { get } from "mongoose";
 import User from "../models/User.js";
 import jwt from 'jsonwebtoken'
 
@@ -32,10 +31,14 @@ export const signup=async (req,res,next)=>{
             expiresIn:24*60*60
         })
 
-        //projecting only required fields
-        let user=await User.findById(newUser._id).select("-password -confirmPassword")
-        //response
-        res.status(201).json({user,token})
+      //set cookie
+      res.cookie("token",`Bearer ${token}`,{
+        maxAge:24*60*60*1000,
+        httpOnly:true
+      })
+
+      //redirect to task home page
+      res.redirect("/task")
     } catch (error) {
         res.status(400).json(error.message) 
     }
@@ -56,10 +59,14 @@ export const login=async (req,res,next)=>{
             expiresIn:24*60*60
         })
 
-        //projecting only required fields
-        let user=await User.findById(existingUser._id).select("-password -confirmPassword")
-        //response
-        res.status(201).json({user,token})
+      //set cookie
+      res.cookie("token",`Bearer ${token}`,{
+        maxAge:24*60*60*1000,
+        httpOnly:true
+      })
+
+      //redirect to task home page
+      res.redirect("/task")
     } catch (error) {
         res.status(400).json(error.message) 
     }

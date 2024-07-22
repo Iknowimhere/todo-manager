@@ -25,9 +25,10 @@ header h1 {
     width: 100%;
     background-color: #ddd;
     padding: 1em 0;
+    margin-top: 1em;
 }
 
-header form {
+ header form {
     width: 50%;
     display: flex;
     justify-content: center;
@@ -46,6 +47,7 @@ form input:focus{
     outline: none;
 }
 
+
 form button {
     flex: 1;
     padding: 0.75em;
@@ -58,7 +60,7 @@ form button {
 
 form button i{
     font-size: 1.5em;
-}
+} 
 
 main {
     margin: 0 auto;
@@ -66,7 +68,7 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 2em;
+    margin-top: 5em;
 }
 
 main table,
@@ -78,6 +80,7 @@ td {
 }
 
 table {
+    margin-top: 2em;
     width: 100%;
 }
 table h1{
@@ -228,4 +231,24 @@ button[type="reset"] {
 p {
     margin-top: 20px;
     text-align: center;
+}
+.button-group{
+    display: flex;
+}
+.button-group form{
+    background: none;
+    border: none;
+}
+
+.button-group form button{
+    width: 2em;
+border: 1px solid black;
+padding: 0 32px;
+border: none;
+    background: none;
+    color: blue;
+}
+
+.button-group form button i{
+    font-size: 2em;
 }

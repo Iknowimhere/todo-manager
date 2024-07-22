@@ -4,7 +4,10 @@ import User from '../models/User.js';
 
 export const auth=async (req,res,next)=>{
     //take test token from headers
-    let testToken=req.headers?.authorization
+    // let testToken=req.headers?.authorization
+
+    //take test token from cookie
+    let testToken=req.cookies.token
 
     //split token to get actual token
     let token=testToken.split(" ")[1]
