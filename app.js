@@ -27,6 +27,18 @@ app.get("/",(req,res)=>{
 app.use("/task",taskRouter);
 app.use("/users",userRouter);
 
+app.all("*",(req,res,next)=>{
+    let err=new Error(`This page your'e looking for is not implemented`)
+    err.statusCode=400
+    next(err)
+})
+
+app.use((err,req,res,next)=>{
+    err.statusCode?err.statusCode: 500;
+    err.message?err.message: `Internal server error`
+    res.clearCookie("token")
+    res.render("pnf",{status:err.statusCode,message:err.message})
+})
 
 
 export default app;

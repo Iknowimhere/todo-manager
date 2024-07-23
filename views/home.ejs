@@ -15,7 +15,7 @@
   </head>
   <body>
     <header>
-      <h1>Track your daily activities</h1>
+      <h1>Track your daily activities, <%= user.name.toUpperCase()%></h1>
       <a href="/users/logout">Logout</a>
       <form action="/task" method="post">
         <input type="text" name="name" placeholder="type something"/>

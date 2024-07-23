@@ -6,7 +6,10 @@ import Task from "../models/Task.js";
 export const postTask = async (req, res, next) => {
   let { name } = req.body;
   if (!name) {
-    return res.status(400).json("Please fill all the fields");
+    // return res.status(400).json("Please fill all the fields");
+    let err=new Error("Please fill all the fields");
+    err.status=400
+    return next(err)
   }
   try {
       await Task.create({
@@ -26,7 +29,7 @@ export const postTask = async (req, res, next) => {
 export const getTasks = async (req, res, next) => {
   try {
     let tasks = await Task.find({user:req.user._id});
-    res.render("home", { title: "Home page", tasks });
+    res.render("home", { title: "Home page", tasks,user:req.user });
     // res.status(200).json(tasks)
   } catch (error) {
     res.status(400).json(error.message);
