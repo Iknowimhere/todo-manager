@@ -9,7 +9,8 @@ export const postTask = async (req, res, next) => {
     return res.status(400).json("Please fill all the fields");
   }
   try {
-    let newTask = await Task.create({
+      await Task.create({
+      user:req.user._id,
       name,
     });
     // res.status(201).json(newTask)
@@ -24,7 +25,7 @@ export const postTask = async (req, res, next) => {
 //access Public
 export const getTasks = async (req, res, next) => {
   try {
-    let tasks = await Task.find();
+    let tasks = await Task.find({user:req.user._id});
     res.render("home", { title: "Home page", tasks });
     // res.status(200).json(tasks)
   } catch (error) {
@@ -38,7 +39,7 @@ export const getTasks = async (req, res, next) => {
 export const getTask = async (req, res, next) => {
   let { id } = req.params;
   try {
-    let task = await Task.findById(id);
+    let task = await Task.findOne({user:req.user._id,_id:id});
     res.status(200).json(task);
   } catch (error) {
     res.status(400).json("Couldn't get a task");
@@ -52,7 +53,7 @@ export const updatedTask = async (req, res, next) => {
   let { id } = req.params;
   let { isCompleted } = req.body;
   try {
-    await Task.findByIdAndUpdate(id, { isCompleted: isCompleted });
+    await Task.findOneAndUpdate({user:req.user._id,_id:id}, { isCompleted: isCompleted });
     // res.status(200).json(updatedTask)
     res.redirect("/task");
   } catch (error) {
@@ -66,9 +67,8 @@ export const updatedTask = async (req, res, next) => {
 export const deleteTask = async (req, res, next) => {
   let { id } = req.params;
   try {
-    await Task.findByIdAndDelete(id);
+    await Task.findOneAndDelete({user:req.user._id,_id:id});
     res.redirect("/task");
-    // res.status(200).json("Deleted a task")
   } catch (error) {
     res.status(400).json("Couldn't delete a task");
   }

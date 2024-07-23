@@ -2,7 +2,15 @@ import mongoose from "mongoose"
 
 //schema 
 let taskSchema=new mongoose.Schema({
-    name:String,
+    user:{
+      type:mongoose.Schema.Types.ObjectId,
+      ref:'User',
+      required:true
+    },
+    name:{
+      type:String,
+      required:true
+    },
     isCompleted:{
       type:Boolean,
       default:false
