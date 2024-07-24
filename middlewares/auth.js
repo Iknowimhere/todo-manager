@@ -6,14 +6,14 @@ export const auth=async (req,res,next)=>{
 try {
     //take test token from cookie
     let testToken=req.cookies.token
-
+    console.log(testToken);
     if(!testToken){
         req.flash('error', 'Please login to access this page');
         return res.redirect("/")
     }
 
     //split token to get actual token
-    let token=testToken.split(" ")[1]
+    let token=testToken?.split(" ")[1]
 
     //verify token using jwt
     let decodedToken=await jwt.verify(token,process.env.JWT_SECRET)

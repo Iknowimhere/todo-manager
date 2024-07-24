@@ -19,6 +19,7 @@ export const postTask = async (req, res, next) => {
     // res.status(201).json(newTask)
     res.redirect("/task");
   } catch (error) {
+    console.log(error);
     res.status(400).json(error.message);
   }
 };

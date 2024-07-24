@@ -22,7 +22,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.use(cookieParser("secret"));
 app.use(session({
-    cookie: { maxAge: 60000 },
+    cookie: { maxAge: 1000*60*60*24 },
     saveUninitialized: true,
     resave: "true",
     secret: "secret",
@@ -46,7 +46,6 @@ app.all("*", (req, res, next) => {
 app.use((err, req, res, next) => {
   err.statusCode ? err.statusCode : 500;
   err.message ? err.message : `Internal server error`;
-  res.clearCookie("token");
   res.render("pnf", { status: err.statusCode, message: err.message });
 });
 
