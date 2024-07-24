@@ -124,6 +124,7 @@ footer {
 }
 
 
+
 /* index page */
 
 
@@ -241,4 +242,7 @@ td form{
     border: none;
 }
 
-
+.alert{
+    margin-top: 2em;
+    margin-left: 1em;
+}

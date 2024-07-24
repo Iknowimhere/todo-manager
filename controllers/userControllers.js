@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken'
 
 
 export const getSignupPage=(req,res,next)=>{
-    res.render("signup",{title:"Signup page"})
+    res.render("signup",{title:"Signup page",expressFlash: req.flash('error')})
 }
 
 
@@ -15,6 +15,10 @@ export const getLoginPage=(req,res,next)=>{
 //signup
 export const signup=async (req,res,next)=>{
     const {name,email,password,confirmPassword}=req.body
+    if(!name || !email || !password || !confirmPassword){
+        req.flash('error', 'Please fill all the fields');
+        return res.redirect("/users/signup")
+    }
     try {
         //checking for existing user
         let existingUser=await User.findOne({email})

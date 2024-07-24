@@ -3,11 +3,14 @@ import User from '../models/User.js';
 //verifies token
 
 export const auth=async (req,res,next)=>{
-    //take test token from headers
-    // let testToken=req.headers?.authorization
-
+try {
     //take test token from cookie
     let testToken=req.cookies.token
+
+    if(!testToken){
+        req.flash('error', 'Please login to access this page');
+        return res.redirect("/")
+    }
 
     //split token to get actual token
     let token=testToken.split(" ")[1]
@@ -24,4 +27,8 @@ export const auth=async (req,res,next)=>{
     //if user is present set it to request object 
     req.user=user
     next()
+} catch (error) {
+    res.sendStatus(400)
+    throw new Error(error.message)
+}
 }
